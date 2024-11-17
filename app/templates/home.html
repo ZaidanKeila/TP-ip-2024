@@ -38,6 +38,13 @@
         {% else %} {% for img in images %}
         <div class="col">
             <div class="card mb-3 ms-5" style="max-width: 540px;">
+                {% if img.status == 'Alive' %}
+                <class="card mb-3 ms-5" style="border: solid green 1px;">
+                {% elif img.status == 'Dead' %}
+                <class="card mb-3 ms-5" style="border: solid red 1px;">
+                {% else %}
+                <class="card mb-3 ms-5" style="border: solid orange 1px;">
+                {% endif %}
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="{{ img.url }}" class="card-img-top" alt="imagen">
@@ -48,9 +55,12 @@
                             <h3 class="card-title">{{ img.name }}</h3>
                             <p class="card-text">
                                 <strong>
-                                            {% if true == 'Alive' %} 🟢 {{ img.status }} 
-                                            {% elif true == 'Dead' %} 🔴 {{ img.status }} 
-                                            {% else %} 🟠 {{ img.status }} 
+                                            {% if img.status == 'Alive' %}
+                                            🟢 {{ img.status }}
+                                            {% elif img.status == 'Dead' %}
+                                            🔴 {{ img.status }} 
+                                            {% else %}
+                                            🟠 {{ img.status }} 
                                             {% endif %}
                                         </strong>
                             </p>
