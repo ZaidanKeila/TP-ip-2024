@@ -35,7 +35,7 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% if images|length == 0 %}
         <h2 class="text-center">La búsqueda no arrojó resultados...</h2>
-        {% else %} {% for img in images %}
+        {% else %} {% for img in context.page_object %}
         <div class="col">
             <div class="card mb-3 ms-5" style="max-width: 540px;">
                 {% if img.status == 'Alive' %}

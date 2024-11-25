@@ -7,7 +7,7 @@ from ...config import config
 # este método se encarga de "pegarle" a la API y traer una lista de objetos JSON crudos (raw).
 def getAllImages(input=None):
     if input is None:
-        json_response = requests.get(config.DEFAULT_REST_API_URL).json()
+        json_response = requests.get(config.BASE_API_URL).json()
     else:
         json_response = requests.get(config.DEFAULT_REST_API_SEARCH + input).json()
 
