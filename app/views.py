@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from .layers.services import services
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator 
 
 def index_page(request):
     return render(request, 'index.html')
@@ -14,10 +14,11 @@ def index_page(request):
 def home(request, page=1):
     images = services.getAllImages()
     favourite_list = services.getAllFavourites(request)
-    paginator = Paginator (images, per_page=20)
-    page_object = paginator.get_page(page)
-    context = {'page_object': page_object}
+    paginator = Paginator (images, per_page=20) #crea un objeto para manejar la paginación
+    page_object = paginator.get_page(page) #recupera la pagina especifica solicitada por el usuario y page se utiliza para determinar que pagina buscar 
+    context = {'page_object': page_object} #crea un diccionario de contecto, incluye page_object que contiene la info sobre la pagina actual, el total de paginas y las imagenes de esa pagina en especifico 
 
+    #pasa las imagenes, favoritos y diccionario de contexto, pasando los datos necesarios para mostrar imagenes, favoritos y controles de paginacion
     return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list, 'context': context})
 
 def search(request,page=1):
